@@ -2,6 +2,7 @@ package br.com.andraDev;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +11,42 @@ public class Main {
   public static void main(String[] args) {
     System.out.println("Selection Process");
     candidateSelection();
+    
+    for (String candidate : selectedCandidates) {
+      callCandidate(candidate);
+    }
+  }
+  
+  public static void callCandidate(String candidate) {
+    int retries = 1;
+    boolean keepTrying = true;
+    boolean candidateAnsweredThePhone = false;
+    
+    do {
+      candidateAnsweredThePhone = pickup();
+      keepTrying = !candidateAnsweredThePhone;
+      
+      if (keepTrying) {
+        retries++;
+      }
+    }
+    while (keepTrying && retries < 3);
+    
+    if (candidateAnsweredThePhone) {
+      System.out.println(STR."We were able to get in touch with \{candidate} in \{retries} tries.");
+    } else {
+      System.out.println(STR."We weren't able to get in touch with \{candidate}. We tried \{retries} times with no success.");
+    }
+  }
+  
+  public static boolean pickup() {
+    return new Random().nextInt(3) == 1;
+  }
+  
+  public static void printSelectedCandidates() {
+    for (String candidate: selectedCandidates) {
+      System.out.println(STR."The candidate: \{candidate} was selected.");
+    }
   }
   
   public static void candidateSelection() {
@@ -55,11 +92,5 @@ public class Main {
     }
     
     return false;
-  }
-  
-  public static void printSelectedCandidates() {
-    for (String candidate: selectedCandidates) {
-      System.out.println(STR."The candidate: \{candidate} was selected.");
-    }
   }
 }
