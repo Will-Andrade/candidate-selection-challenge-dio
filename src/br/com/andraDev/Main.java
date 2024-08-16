@@ -33,9 +33,9 @@ public class Main {
     while (keepTrying && retries < 3);
     
     if (candidateAnsweredThePhone) {
-      System.out.println(STR."We were able to get in touch with \{candidate} in \{retries} tries.");
+      System.out.println("We were able to get in touch with " + candidate + " in " + retries + " tries.");
     } else {
-      System.out.println(STR."We weren't able to get in touch with \{candidate}. We tried \{retries} times with no success.");
+      System.out.println("We weren't able to get in touch with " + candidate + ". We tried " + retries + " times with no success.");
     }
   }
   
@@ -45,7 +45,7 @@ public class Main {
   
   public static void printSelectedCandidates() {
     for (String candidate: selectedCandidates) {
-      System.out.println(STR."The candidate: \{candidate} was selected.");
+      System.out.println("The candidate: " + candidate + " was selected.");
     }
   }
   
@@ -56,7 +56,7 @@ public class Main {
     int selectedCandidatesAmount = 0;
     
     for (String candidate : candidates) {
-      System.out.println(STR."Analyzing candidate: \{candidate}");
+      System.out.println("Analyzing candidate: " + candidate);
       
       if (analyzeCandidate()) {
         selectedCandidatesAmount++;
